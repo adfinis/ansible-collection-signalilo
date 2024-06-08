@@ -1,0 +1,14 @@
+signalilo_icinga_url: http://api.icinga.example.com
+signalilo_uuid: 00000000-0000-0000-0000-000000000000
+signalilo_icinga_hostname: host.example.com
+signalilo_icinga_username: changeme-signalilo
+signalilo_icinga_password: changeme
+signalilo_alertmanager_port: 8888
+signalilo_alertmanager_bearer_token: changeme
+signalilo_icinga_debug: false
+signalilo_alertmanager_pluginoutput_annotations: |
+  description
+  message
+signalilo_icinga_ca:
+signalilo_bearer_token_path: /usr/local/etc/signalilo-bearer-token
+signalilo_docker_image: quay.io/vshn/signalilo:latest
