@@ -1,7 +1,7 @@
 - name: Check UUID was overridden
   ansible.builtin.assert:
-    that: "{{ signalilo_uuid }} != '00000000-0000-0000-0000-000000000000'"
-    msg: "Set Signalilo UUID to new value"
+    that: "signalilo_uuid != '00000000-0000-0000-0000-000000000000'"
+    fail_msg: "Set Signalilo UUID to new value"
 
 - name: Copy signalilo binary from Docker image
   ansible.builtin.import_tasks: docker.yml
