@@ -1,0 +1,33 @@
+- name: Check if local copy of Signalilo exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/signalilo_docker"
+  register: signalilo_check
+  delegate_to: localhost
+
+- name: Get signalilo binary from image using Podman
+  ansible.builtin.shell:
+    cmd: |
+      export IMG="{{ signalilo_docker_image }}" && \
+      podman pull $IMG && \
+      export ID=$(podman create $IMG) && \
+      podman cp $ID:/usr/local/bin/signalilo {{ playbook_dir }}/signalilo_docker && \
+      podman rm $ID
+  delegate_to: localhost
+  changed_when: signalilo_check.stat.exists is false
+  when: signalilo_check.stat.exists is false
+
+- name: Check again if local copy of Signalilo exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/signalilo_docker"
+  register: signalilo_check2
+  delegate_to: localhost
+
+- name: Copy Signalilo
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/signalilo_docker"
+    dest: /usr/local/bin/signalilo
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  when: signalilo_check2.stat.exists

@@ -17,9 +17,19 @@ collections:
 
 ## Roles
 
-### `adfinis.signalilo.signalilo_docker`
+### `adfinis.signalilo.signalilo`
 
-Role uses Podman to extract Signalilo binary from Docker image and deploys it using systemd. Configuration is done with setting environmental variables.
+Role uses Podman to extract Signalilo binary from Docker image or compiles it locally and deploys it using systemd.
+
+Requirements:
+
+When `signalilo_from: docker`:
+Playbook executor requires working Podman deployment
+
+When `signalilo_from: source`:
+Playbook executor requires Go ecosystem pre-installed.
+
+Configuration:
 
 Example Playbook:
 
@@ -29,14 +39,8 @@ Example Playbook:
   tasks:
     - name: Import signalilo role
       ansible.builtin.import_role:
-        name: adfinis.signalilo.signalilo_docker
+        name: adfinis.signalilo.signalilo
 ```
-
-### `adfinis.signalilo.signalilo_compile`
-
-**NOT IMPLEMENTED**
-
-Role compiles Signalilo binary and deploys it using systemd. Configuration is done with setting environmental variables. 
 
 ## License
 

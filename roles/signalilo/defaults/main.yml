@@ -1,14 +1,30 @@
+# Icinga API URL
 signalilo_icinga_url: http://api.icinga.example.com
+# UUID - override in configuration
 signalilo_uuid: 00000000-0000-0000-0000-000000000000
+# Monitored Icinga host
 signalilo_icinga_hostname: host.example.com
+# Icinga API username
 signalilo_icinga_username: changeme-signalilo
+# Icinga API password
 signalilo_icinga_password: changeme
+# Signalilo listening port
 signalilo_alertmanager_port: 8888
+# Bearer token used by Alertmanager
 signalilo_alertmanager_bearer_token: changeme
+# Enable/disable debug output
 signalilo_icinga_debug: false
+# Signalilo annotation config
 signalilo_alertmanager_pluginoutput_annotations: |
   description
   message
+# Icinga CA for Signalilo to trust
 signalilo_icinga_ca:
+# Bearer token path - file is created by this role
 signalilo_bearer_token_path: /usr/local/etc/signalilo-bearer-token
+# Values:
+# - docker - use Podman to pull, run image and copy binary out locally
+# - source - download and compile Signalilo locally
+signalilo_from: docker
+# Signalilo Docker image location
 signalilo_docker_image: quay.io/vshn/signalilo:latest
