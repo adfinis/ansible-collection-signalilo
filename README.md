@@ -24,12 +24,16 @@ Role uses Podman to extract Signalilo binary from Docker image or compiles it lo
 Requirements:
 
 When `signalilo_from: docker`:
+
 Playbook executor requires working Podman deployment
 
 When `signalilo_from: source`:
+
 Playbook executor requires Go ecosystem pre-installed.
 
 Configuration:
+
+See `roles/signalilo/defaults/main.yml`
 
 Example Playbook:
 
@@ -51,4 +55,3 @@ Example Playbook:
 The Ansible collection `adfinis.signalilo` was written by:
 
 * Adfinis AG | [Website](https://www.adfinis.com/) | [GitHub](https://github.com/adfinis)
-
