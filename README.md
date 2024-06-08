@@ -1,34 +1,50 @@
-# Ansible Collection - adfinis.TEMPLATE
+# Ansible Collection - adfinis.signalilo
 
-![License](https://img.shields.io/github/license/adfinis/ansible-collection-TEMPLATE)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/adfinis/ansible-collection-TEMPLATE/ansible-lint.yml)
-[![adfinis.TEMPLATE on Ansible Galaxy](https://img.shields.io/badge/collection-adfinis.TEMPLATE-blue)](https://galaxy.ansible.com/ui/repo/published/adfinis/TEMPLATE/)
+![License](https://img.shields.io/github/license/adfinis/ansible-collection-signalilo)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/adfinis/ansible-collection-signalilo/ansible-lint.yml)
+[![adfinis.signalilo on Ansible Galaxy](https://img.shields.io/badge/collection-adfinis.signalilo-blue)](https://galaxy.ansible.com/ui/repo/published/adfinis/signalilo/)
 
 
-This should serve as a TEMPLATE to create new collections.
+This role deploys Signalilo binary as systemd managed service.
 
-A brief description of the collection goes here.
+To use the role add following to the `requirements.yml`:
 
-To create a new repository from this template, follow the instructions at [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).  Afterwards, clone your newly created repository and do a `git grep TEMPLATE` to find all the places where changes are required.
-
-You can submit new releases of your collection to Ansible Galaxy simply by creating a git tag and pushing it to Github. The tag name must consist of `v` followed by a semver version number, e.g. `v1.0.0`.
+```yaml
+collections:
+  - name: adfinis.signalilo
+    version: 1.0.0
+```
 
 ## Roles
 
-Provide a short description of each role in your collection.  If your collection contains other artifacts such as playbooks or plugins, describe them as well.
+### `adfinis.signalilo.signalilo_docker`
 
-### `adfinis.TEMPLATE.example_role`
+Role uses Podman to extract Signalilo binary from Docker image and deploys it using systemd. Configuration is done with setting environmental variables.
 
-A short description of example_role goes here, along with its options and a minimal usage example.
+Example Playbook:
 
+```yaml
+- name: Deploy Gitlab
+  hosts: signalilo_server
+  tasks:
+    - name: Import signalilo role
+      ansible.builtin.import_role:
+        name: adfinis.signalilo.signalilo_docker
+```
+
+### `adfinis.signalilo.signalilo_compile`
+
+**NOT IMPLEMENTED**
+
+Role compiles Signalilo binary and deploys it using systemd. Configuration is done with setting environmental variables. 
 
 ## License
 
-[GPL-3.0-or-later](https://github.com/adfinis-sygroup/ansible-collection-TEMPLATE/blob/main/LICENSE)
+[GPL-3.0-or-later](https://github.com/adfinis-sygroup/ansible-collection-signalilo/blob/main/LICENSE)
 
 ## Author Information
 
-The Ansible collection `adfinis.TEMPLATE` was written by:
+The Ansible collection `adfinis.signalilo` was written by:
 
 * Adfinis AG | [Website](https://www.adfinis.com/) | [GitHub](https://github.com/adfinis)
 
