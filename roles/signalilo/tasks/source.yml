@@ -1,0 +1,43 @@
+---
+- name: Create a directory for Signalilo source if it does not exist
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/source"
+    state: directory
+    mode: '0755'
+  delegate_to: localhost
+
+- name: Download Signalilo source tarfile
+  ansible.builtin.get_url:
+    url: "https://github.com/vshn/signalilo/archive/refs/tags/v{{ signalilo_source_version }}.tar.gz"
+    dest: "{{ playbook_dir }}/source/signalilo-v{{ signalilo_source_version }}.tar.gz"
+    mode: '0644'
+  delegate_to: localhost
+
+- name: Extract Singalilo source tarfile
+  ansible.builtin.unarchive:
+    src: "{{ playbook_dir }}/source/signalilo-v{{ signalilo_source_version }}.tar.gz"
+    dest: "{{ playbook_dir }}/source"
+  delegate_to: localhost
+
+- name: Build Signalilo
+  community.general.make:
+    chdir: "{{ playbook_dir }}/source/signalilo-{{ signalilo_source_version }}"
+    jobs: 2
+    target: build
+  delegate_to: localhost
+
+- name: Check if Signalilo binary exists
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/source/signalilo-{{ signalilo_source_version }}/signalilo"
+  register: signalilo_check
+  delegate_to: localhost
+
+- name: Copy Signalilo
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/source/signalilo-{{ signalilo_source_version }}/signalilo"
+    dest: /usr/local/bin/signalilo
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  when: signalilo_check.stat.exists

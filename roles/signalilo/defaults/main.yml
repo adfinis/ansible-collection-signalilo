@@ -28,3 +28,4 @@ signalilo_bearer_token_path: /usr/local/etc/signalilo-bearer-token
 signalilo_from: docker
 # Signalilo Docker image location
 signalilo_docker_image: quay.io/vshn/signalilo:latest
+signalilo_source_version: 0.14.0
