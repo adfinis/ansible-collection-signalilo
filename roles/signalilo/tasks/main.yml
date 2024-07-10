@@ -8,6 +8,11 @@
   become: true
   when: signalilo_from == 'docker'
 
+- name: Build signalilo binary from source
+  ansible.builtin.import_tasks: source.yml
+  become: true
+  when: signalilo_from == 'source'
+
 - name: Ensure group signalilo exists
   ansible.builtin.group:
     name: signalilo
