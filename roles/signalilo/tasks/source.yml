@@ -22,7 +22,6 @@
 - name: Build Signalilo
   community.general.make:
     chdir: "{{ playbook_dir }}/source/signalilo-{{ signalilo_source_version }}"
-    jobs: 2
     target: build
   delegate_to: localhost
 
