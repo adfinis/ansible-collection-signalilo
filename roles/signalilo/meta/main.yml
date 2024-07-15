@@ -1,0 +1,34 @@
+---
+
+dependencies: []
+collections:
+  - community.general
+galaxy_info:
+  role_name: signalilo
+  namespace: adfinis
+  author: Adfinis AG
+  description: This role is used to install Signlilo
+  company: Adfinis AG
+  license: GNU General Public License v3
+  min_ansible_version: 2.0.0
+  platforms:
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+        - buster
+        - bullseye
+        - bookworm
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - mantic
+        - noble
+  galaxy_tags:
+    - linux
+    - monitoring
+    - alerting
+    - icinga
+    - alertmanager

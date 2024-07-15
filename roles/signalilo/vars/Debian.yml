@@ -1,0 +1,5 @@
+---
+
+signalilo_source_dependencies:
+  - golang
+  - make

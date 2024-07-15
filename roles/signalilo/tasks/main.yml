@@ -1,3 +1,17 @@
+- name: Include os specific vars
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ signalilo_source_dependencies }}"
+  become: true
+
 - name: Check UUID was overridden
   ansible.builtin.assert:
     that: "signalilo_uuid != '00000000-0000-0000-0000-000000000000'"
