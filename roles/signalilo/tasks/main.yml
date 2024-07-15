@@ -5,7 +5,6 @@
 
 - name: Copy signalilo binary from Docker image
   ansible.builtin.import_tasks: docker.yml
-  become: true
   when: signalilo_from == 'docker'
 
 - name: Build signalilo binary from source
