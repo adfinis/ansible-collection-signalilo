@@ -23,6 +23,8 @@
   community.general.make:
     chdir: "{{ playbook_dir }}/source/signalilo-{{ signalilo_source_version }}"
     target: build
+    params:
+      BINARY_VERSION: '{{ signalilo_source_version }}'
   delegate_to: localhost
 
 - name: Check if Signalilo binary exists
