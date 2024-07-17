@@ -1,10 +1,3 @@
-- name: Install dependencies
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ signalilo_source_dependencies }}"
-  become: true
-
 - name: Check UUID was overridden
   ansible.builtin.assert:
     that: "signalilo_uuid != '00000000-0000-0000-0000-000000000000'"
