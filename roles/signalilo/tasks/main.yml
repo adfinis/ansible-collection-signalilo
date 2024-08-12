@@ -40,9 +40,9 @@
   ansible.builtin.copy:
     content: "{{ signalilo_alertmanager_bearer_token }}"
     dest: "{{ signalilo_bearer_token_path }}"
-    owner: root
-    group: root
-    mode: "0640"
+    owner: "{{ signalilo_bearer_token_owner | default('root') }}"
+    group: "{{ signalilo_bearer_token_group | default('root') }}"
+    mode: "{{ signalilo_bearer_token_mode | default('0640') }}"
   become: true
 
 - name: Copy systemd service

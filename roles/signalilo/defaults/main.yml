@@ -29,3 +29,6 @@ signalilo_from: docker
 # Signalilo Docker image location
 signalilo_docker_image: quay.io/vshn/signalilo:latest
 signalilo_source_version: 0.14.0
+signalilo_bearer_token_owner: "root"
+signalilo_bearer_token_group: "root"
+signalilo_bearer_token_mode: "0640"
