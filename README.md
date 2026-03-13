@@ -12,7 +12,7 @@ To use the role add following to the `requirements.yml`:
 ```yaml
 collections:
   - name: adfinis.signalilo
-    version: 1.0.0
+    version: 1.0.6
 ```
 
 ## Roles
