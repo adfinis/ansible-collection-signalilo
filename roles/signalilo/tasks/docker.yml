@@ -3,6 +3,7 @@
     path: "{{ playbook_dir }}/signalilo_docker"
   register: signalilo_check
   delegate_to: localhost
+  become: false
 
 - name: Get signalilo binary from image using Podman
   ansible.builtin.shell:
@@ -13,6 +14,7 @@
       podman cp $ID:/usr/local/bin/signalilo {{ playbook_dir }}/signalilo_docker && \
       podman rm $ID
   delegate_to: localhost
+  become: false
   changed_when: signalilo_check.stat.exists is false
   when: signalilo_check.stat.exists is false
 
@@ -21,6 +23,7 @@
     path: "{{ playbook_dir }}/signalilo_docker"
   register: signalilo_check2
   delegate_to: localhost
+  become: false
 
 - name: Copy Signalilo
   ansible.builtin.copy:

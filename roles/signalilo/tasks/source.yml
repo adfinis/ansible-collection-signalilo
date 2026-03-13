@@ -5,6 +5,7 @@
     state: directory
     mode: '0755'
   delegate_to: localhost
+  become: false
 
 - name: Download Signalilo source tarfile
   ansible.builtin.get_url:
@@ -12,12 +13,14 @@
     dest: "{{ playbook_dir }}/source/signalilo-v{{ signalilo_source_version }}.tar.gz"
     mode: '0644'
   delegate_to: localhost
+  become: false
 
 - name: Extract Singalilo source tarfile
   ansible.builtin.unarchive:
     src: "{{ playbook_dir }}/source/signalilo-v{{ signalilo_source_version }}.tar.gz"
     dest: "{{ playbook_dir }}/source"
   delegate_to: localhost
+  become: false
 
 - name: Build Signalilo
   community.general.make:
@@ -26,12 +29,14 @@
     params:
       BINARY_VERSION: '{{ signalilo_source_version }}'
   delegate_to: localhost
+  become: false
 
 - name: Check if Signalilo binary exists
   ansible.builtin.stat:
     path: "{{ playbook_dir }}/source/signalilo-{{ signalilo_source_version }}/signalilo"
   register: signalilo_check
   delegate_to: localhost
+  become: false
 
 - name: Copy Signalilo
   ansible.builtin.copy:
